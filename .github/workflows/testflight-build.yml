@@ -29,8 +29,8 @@ jobs:
           mkdir -p ~/.eas
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
           # ASC API Key
-          echo "${{ secrets.ASC_API_KEY }}" > ~/.eas/AuthKey_NCW9T7658N.p8
-          chmod 600 ~/.eas/AuthKey_NCW9T7658N.p8
+          echo "${{ secrets.ASC_API_KEY }}" > /Users/runner/.eas/AuthKey_NCW9T7658N.p8
+          chmod 600 /Users/runner/.eas/AuthKey_NCW9T7658N.p8
           # Distribution certificate - import to keychain
           echo "${{ secrets.IOS_DISTRIBUTION_P12 }}" | base64 -d > /tmp/ios_distribution.p12
           security import /tmp/ios_distribution.p12 -P password -A -t cert -f pkcs12 -k ~/Library/Keychains/login.keychain-db
