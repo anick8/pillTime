@@ -25,9 +25,11 @@ jobs:
         run: npm install -g eas-cli
 
       - name: Login to EAS
-        run: eas login --non-interactive
         env:
           EAS_TOKEN: ${{ secrets.EAS_TOKEN }}
+        run: |
+          mkdir -p ~/.eas
+          echo "$EAS_TOKEN" > ~/.eas/token
 
       - name: Create API key file
         run: |
