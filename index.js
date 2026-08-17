@@ -1,8 +1,13 @@
-import { registerRootComponent } from 'expo';
+// Background notification event handler MUST be registered here, at module
+// top level, before the expo-router entry import below. This file (not
+// expo-router/entry) is the app's "main" so this handler is guaranteed to
+// run before the JS engine is torn down between background invocations.
+import notifee, { EventType } from 'react-native-notify-kit';
 
-import App from './App';
+notifee.onBackgroundEvent(async ({ type, detail }) => {
+  if (type === EventType.DELIVERED) {
+    console.log('[PillTime] alarm delivered in background', detail.notification?.id);
+  }
+});
 
-// registerRootComponent calls AppRegistry.registerComponent('main', () => App);
-// It also ensures that whether you load the app in Expo Go or in a native build,
-// the environment is set up appropriately
-registerRootComponent(App);
+import 'expo-router/entry';

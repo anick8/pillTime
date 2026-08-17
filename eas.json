@@ -1,0 +1,44 @@
+{
+  "cli": { "version": ">= 16.0.0", "appVersionSource": "remote" },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "android": { "buildType": "apk" },
+      "ios": { "simulator": true }
+    },
+    "preview": {
+      "distribution": "internal",
+      "android": { "buildType": "apk" },
+      "ios": { "simulator": false }
+    },
+    "production": {
+      "autoIncrement": true,
+      "ios": { "simulator": false }
+    },
+    "testflight": {
+      "distribution": "store",
+      "ios": {
+        "simulator": false
+      }
+    }
+  },
+  "submit": {
+    "production": {
+      "ios": {
+        "ascApiKeyPath": "~/.eas/AuthKey_NCW9T7658N.p8",
+        "ascApiKeyId": "NCW9T7658N",
+        "ascApiKeyIssuerId": "774468b4-662b-4389-a77a-6b111d91a269",
+        "appleTeamId": "XBHQXGH9AP"
+      }
+    },
+    "testflight": {
+      "ios": {
+        "ascApiKeyPath": "~/.eas/AuthKey_NCW9T7658N.p8",
+        "ascApiKeyId": "NCW9T7658N",
+        "ascApiKeyIssuerId": "774468b4-662b-4389-a77a-6b111d91a269",
+        "appleTeamId": "XBHQXGH9AP"
+      }
+    }
+  }
+}
