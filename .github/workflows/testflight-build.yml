@@ -1,0 +1,44 @@
+name: Build and Submit to TestFlight
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Setup EAS
+        run: npm install -g eas-cli
+
+      - name: Login to EAS
+        run: eas login --non-interactive
+        env:
+          EAS_TOKEN: ${{ secrets.EAS_TOKEN }}
+
+      - name: Create API key file
+        run: |
+          mkdir -p ~/.eas
+          echo "${{ secrets.ASC_API_KEY }}" > ~/.eas/AuthKey_NCW9T7658N.p8
+          chmod 600 ~/.eas/AuthKey_NCW9T7658N.p8
+
+      - name: Build for TestFlight
+        run: eas build --platform ios --profile production --non-interactive
+
+      - name: Submit to TestFlight
+        run: eas submit --platform ios --profile production --non-interactive
+        env:
+          EAS_TOKEN: ${{ secrets.EAS_TOKEN }}
