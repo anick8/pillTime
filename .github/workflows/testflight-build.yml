@@ -24,13 +24,21 @@ jobs:
       - name: Setup EAS
         run: npm install -g eas-cli
 
-      - name: Create API key file
+      - name: Set up iOS credentials
         run: |
           mkdir -p ~/.eas
+          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          # ASC API Key
           echo "${{ secrets.ASC_API_KEY }}" > ~/.eas/AuthKey_NCW9T7658N.p8
           chmod 600 ~/.eas/AuthKey_NCW9T7658N.p8
+          # Distribution certificate
+          echo "${{ secrets.IOS_DISTRIBUTION_P12 }}" | base64 -d > ~/.eas/ios_distribution.p12
+          chmod 600 ~/.eas/ios_distribution.p12
+          # Provisioning profile
+          echo "${{ secrets.IOS_PROVISIONING_PROFILE }}" | base64 -d > ~/Library/MobileDevice/Provisioning\ Profiles/pillTime_PP.mobileprovision
+          chmod 600 ~/Library/MobileDevice/Provisioning\ Profiles/pillTime_PP.mobileprovision
 
       - name: Build for TestFlight
-        run: eas build --platform ios --profile preview --non-interactive
+        run: eas build --platform ios --profile production --non-interactive
         env:
           EXPO_TOKEN: ${{ secrets.EAS_TOKEN }}

@@ -17,7 +17,10 @@
       "autoIncrement": true,
       "ios": {
         "simulator": false,
-        "credentialsSource": "remote"
+        "credentialsSource": "local",
+        "certificateP12Path": "~/.eas/ios_distribution.p12",
+        "certificateP12Password": "password",
+        "provisioningProfilePath": "~/Library/MobileDevice/Provisioning Profiles/pillTime_PP.mobileprovision"
       }
     },
     "testflight": {
