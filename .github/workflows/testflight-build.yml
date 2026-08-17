@@ -43,3 +43,8 @@ jobs:
         run: eas build --platform ios --profile production --non-interactive
         env:
           EXPO_TOKEN: ${{ secrets.EAS_TOKEN }}
+
+      - name: Submit to TestFlight
+        run: eas submit --platform ios --profile production --non-interactive
+        env:
+          EXPO_TOKEN: ${{ secrets.EAS_TOKEN }}

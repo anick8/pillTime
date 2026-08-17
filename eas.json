@@ -30,7 +30,8 @@
         "ascApiKeyPath": "~/.eas/AuthKey_NCW9T7658N.p8",
         "ascApiKeyId": "NCW9T7658N",
         "ascApiKeyIssuerId": "774468b4-662b-4389-a77a-6b111d91a269",
-        "appleTeamId": "XBHQXGH9AP"
+        "appleTeamId": "XBHQXGH9AP",
+        "ascAppId": "6802415884"
       }
     },
     "testflight": {
@@ -38,7 +39,8 @@
         "ascApiKeyPath": "~/.eas/AuthKey_NCW9T7658N.p8",
         "ascApiKeyId": "NCW9T7658N",
         "ascApiKeyIssuerId": "774468b4-662b-4389-a77a-6b111d91a269",
-        "appleTeamId": "XBHQXGH9AP"
+        "appleTeamId": "XBHQXGH9AP",
+        "ascAppId": "6802415884"
       }
     }
   }
