@@ -15,7 +15,10 @@
     "production": {
       "distribution": "store",
       "autoIncrement": true,
-      "ios": { "simulator": false }
+      "ios": {
+        "simulator": false,
+        "credentialsSource": "remote"
+      }
     },
     "testflight": {
       "distribution": "store",

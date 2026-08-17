@@ -31,11 +31,6 @@ jobs:
           chmod 600 ~/.eas/AuthKey_NCW9T7658N.p8
 
       - name: Build for TestFlight
-        run: eas build --platform ios --profile production --non-interactive
-        env:
-          EXPO_TOKEN: ${{ secrets.EAS_TOKEN }}
-
-      - name: Submit to TestFlight
-        run: eas submit --platform ios --profile production --non-interactive
+        run: eas build --platform ios --profile preview --non-interactive
         env:
           EXPO_TOKEN: ${{ secrets.EAS_TOKEN }}
