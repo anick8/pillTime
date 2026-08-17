@@ -31,12 +31,13 @@ jobs:
           # ASC API Key
           echo "${{ secrets.ASC_API_KEY }}" > ~/.eas/AuthKey_NCW9T7658N.p8
           chmod 600 ~/.eas/AuthKey_NCW9T7658N.p8
-          # Distribution certificate
-          echo "${{ secrets.IOS_DISTRIBUTION_P12 }}" | base64 -d > ~/.eas/ios_distribution.p12
-          chmod 600 ~/.eas/ios_distribution.p12
+          # Distribution certificate - import to keychain
+          echo "${{ secrets.IOS_DISTRIBUTION_P12 }}" | base64 -d > /tmp/ios_distribution.p12
+          security import /tmp/ios_distribution.p12 -P password -A -t cert -f pkcs12 -k ~/Library/Keychains/login.keychain-db
           # Provisioning profile
           echo "${{ secrets.IOS_PROVISIONING_PROFILE }}" | base64 -d > ~/Library/MobileDevice/Provisioning\ Profiles/pillTime_PP.mobileprovision
           chmod 600 ~/Library/MobileDevice/Provisioning\ Profiles/pillTime_PP.mobileprovision
+          rm /tmp/ios_distribution.p12
 
       - name: Build for TestFlight
         run: eas build --platform ios --profile production --non-interactive

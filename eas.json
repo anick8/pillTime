@@ -15,13 +15,7 @@
     "production": {
       "distribution": "store",
       "autoIncrement": true,
-      "ios": {
-        "simulator": false,
-        "credentialsSource": "local",
-        "certificateP12Path": "~/.eas/ios_distribution.p12",
-        "certificateP12Password": "password",
-        "provisioningProfilePath": "~/Library/MobileDevice/Provisioning Profiles/pillTime_PP.mobileprovision"
-      }
+      "ios": { "simulator": false }
     },
     "testflight": {
       "distribution": "store",
