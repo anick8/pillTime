@@ -13,6 +13,7 @@
       "ios": { "simulator": false }
     },
     "production": {
+      "distribution": "store",
       "autoIncrement": true,
       "ios": { "simulator": false }
     },
