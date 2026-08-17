@@ -24,13 +24,6 @@ jobs:
       - name: Setup EAS
         run: npm install -g eas-cli
 
-      - name: Login to EAS
-        env:
-          EAS_TOKEN: ${{ secrets.EAS_TOKEN }}
-        run: |
-          mkdir -p ~/.eas
-          echo "$EAS_TOKEN" > ~/.eas/token
-
       - name: Create API key file
         run: |
           mkdir -p ~/.eas
@@ -39,8 +32,10 @@ jobs:
 
       - name: Build for TestFlight
         run: eas build --platform ios --profile production --non-interactive
+        env:
+          EXPO_TOKEN: ${{ secrets.EAS_TOKEN }}
 
       - name: Submit to TestFlight
         run: eas submit --platform ios --profile production --non-interactive
         env:
-          EAS_TOKEN: ${{ secrets.EAS_TOKEN }}
+          EXPO_TOKEN: ${{ secrets.EAS_TOKEN }}
