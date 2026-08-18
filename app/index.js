@@ -1,5 +1,6 @@
 import { useCallback, useState } from 'react';
 import { FlatList, Pressable, StyleSheet, Text, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Stack, useFocusEffect, useRouter } from 'expo-router';
 import PillListItem from '../components/PillListItem';
 import EmptyState from '../components/EmptyState';
@@ -8,6 +9,7 @@ import { getAllPills } from '../lib/storage';
 export default function HomeScreen() {
   const router = useRouter();
   const [pills, setPills] = useState([]);
+  const insets = useSafeAreaInsets();
 
   useFocusEffect(
     useCallback(() => {
@@ -33,7 +35,7 @@ export default function HomeScreen() {
         }}
       />
 
-      <View style={styles.headerSection}>
+      <View style={[styles.headerSection, { paddingTop: insets.top + 16 }]}>
         <Text style={styles.headerTitle}>Your Medications</Text>
         <Text style={styles.headerSubtitle}>{pills.length} pill{pills.length !== 1 ? 's' : ''} tracked</Text>
       </View>
